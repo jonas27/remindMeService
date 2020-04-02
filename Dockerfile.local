@@ -1,0 +1,11 @@
+FROM golang as builder
+EXPOSE 2001
+COPY . .
+RUN useradd scratchuser && \
+    export GOPATH="" && go env  && go mod vendor  && cd src && \
+    go build -o main .
+RUN ls /go/src
+RUN echo $PWD
+WORKDIR /go/src
+RUN  GO111MODULE=off go test
+CMD ["/go/src/main"]

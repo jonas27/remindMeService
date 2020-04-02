@@ -1,3 +1,3 @@
 #!/bin/bash
 cd src
-go build main.go 
+go run main.go dataStore.go dataRetrieve.go
